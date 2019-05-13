@@ -1,0 +1,4 @@
+/.idea/
+/alibaba-nacos-discovery-client-common/target/
+/alibaba-nacos-discovery-server/target/
+/*/*.iml
