@@ -1,5 +1,6 @@
-package com.nacos.alibaba.Controller;
+package com.nacos.alibaba.client.controller;
 
+import com.nacos.alibaba.utils.InstanceBlance;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
@@ -9,23 +10,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-@RestController
-@RequestMapping("/helloWorld")
-@Slf4j
-public class HelloWorld {
+import java.net.URI;
 
+@RestController
+@RequestMapping("/hello")
+@Slf4j
+public class HelloController {
     @Autowired
     LoadBalancerClient loadBalancerClient;
 
     @GetMapping("/helloWorld")
-    public String helloWorld(){
-
-        ServiceInstance si = loadBalancerClient.choose("alibaba-nacos-discovery-server");
-        log.info("uri:"+si.getUri());
-        String url = si.getUri() + "/hello/helloWorld";
-        RestTemplate restTemplate = new RestTemplate();
-        String value = restTemplate.getForObject(url,String.class);
-        log.info("value:"+value);
-        return value;
+    public String HelloWorld(){
+        log.info("hello world");
+        URI uri = InstanceBlance.getServerUri(loadBalancerClient);
+        log.info("uri: " + uri);
+        String url = uri + "/hello/helloWorld";
+        RestTemplate rt = new RestTemplate();
+        rt.getForObject(url,String.class);
+        return "hello world";
     }
+
 }

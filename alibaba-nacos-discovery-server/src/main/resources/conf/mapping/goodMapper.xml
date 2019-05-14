@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nacos.alibaba.server.mapper.GoodMapper">
+    <resultMap id="BaseResultMap" type="com.nacos.alibaba.vo.Good">
+
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="good_name" jdbcType="VARCHAR" property="goodName" />
+        <result column="good_num" jdbcType="VARCHAR" property="goodNum" />
+        <result column="pro_address" jdbcType="VARCHAR" property="proAddress" />
+        <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+        <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id,good_name,good_num,pro_address,start_time,end_time
+  </sql>
+    <select id="queryGoods" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from app_goods
+    </select>
+
+
+
+
+</mapper>

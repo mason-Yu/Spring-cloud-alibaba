@@ -1,4 +1,4 @@
-package com.nacos.alibaba;
+package com.nacos.alibaba.client;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,8 +6,9 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @EnableDiscoveryClient
 @SpringBootApplication
-public class CommonApplication {
+public class ClientApplication {
+
     public static void main(String[] args) {
-        SpringApplication.run(CommonApplication.class, args);
+        SpringApplication.run(ClientApplication.class,args);
     }
 }
