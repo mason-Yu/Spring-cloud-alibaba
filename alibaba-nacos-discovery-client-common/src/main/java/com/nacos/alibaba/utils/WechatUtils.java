@@ -15,10 +15,14 @@ import java.util.Properties;
 
 public class WechatUtils {
     private static Log logger = LogFactory.getLog(WechatUtils.class);
+    private final static String DSB_APP_PATH = "/config/wechat/mp/mp-dsb.properties";
 
     public static String getAccessToken() throws Exception {
-        String secret = "1afec64c302724cbf5ee0dd9073ef815";//此处填写微信公众号secret
-        String appId = "wxdb94abfa6ecef34d";//此处填写微信公众号appId
+//        Properties prop = PropertiesConfigUtils.getWxProperties(DSB_APP_PATH);
+        String secret = "1afec64c302724cbf5ee0dd9073ef815";
+        String appId = "wxdb94abfa6ecef34d";
+//        String secret = prop.getProperty("wechat.mp.secret");
+//        String appId = prop.getProperty("wechat.pay.appId");
         String accessTokenUrl = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + appId + "&secret=" + secret;
         try {
             HttpURLConnection connection = getConnection(accessTokenUrl, "GET");
